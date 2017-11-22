@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14203A161FBB177E00B6BD85"
-               BuildableName = "Tut1.app"
-               BlueprintName = "Tut1"
-               ReferencedContainer = "container:Tut1.xcodeproj">
+               BlueprintIdentifier = "149CBBDC1FC3137400C5359B"
+               BuildableName = "TimeAndPlace.app"
+               BlueprintName = "TimeAndPlace"
+               ReferencedContainer = "container:TimeAndPlace.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,30 +32,30 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14203A2F1FBB177E00B6BD85"
-               BuildableName = "Tut1Tests.xctest"
-               BlueprintName = "Tut1Tests"
-               ReferencedContainer = "container:Tut1.xcodeproj">
+               BlueprintIdentifier = "149CBBF81FC3137400C5359B"
+               BuildableName = "TimeAndPlaceTests.xctest"
+               BlueprintName = "TimeAndPlaceTests"
+               ReferencedContainer = "container:TimeAndPlace.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14203A3A1FBB177E00B6BD85"
-               BuildableName = "Tut1UITests.xctest"
-               BlueprintName = "Tut1UITests"
-               ReferencedContainer = "container:Tut1.xcodeproj">
+               BlueprintIdentifier = "149CBC031FC3137400C5359B"
+               BuildableName = "TimeAndPlaceUITests.xctest"
+               BlueprintName = "TimeAndPlaceUITests"
+               ReferencedContainer = "container:TimeAndPlace.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14203A161FBB177E00B6BD85"
-            BuildableName = "Tut1.app"
-            BlueprintName = "Tut1"
-            ReferencedContainer = "container:Tut1.xcodeproj">
+            BlueprintIdentifier = "149CBBDC1FC3137400C5359B"
+            BuildableName = "TimeAndPlace.app"
+            BlueprintName = "TimeAndPlace"
+            ReferencedContainer = "container:TimeAndPlace.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -75,10 +75,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14203A161FBB177E00B6BD85"
-            BuildableName = "Tut1.app"
-            BlueprintName = "Tut1"
-            ReferencedContainer = "container:Tut1.xcodeproj">
+            BlueprintIdentifier = "149CBBDC1FC3137400C5359B"
+            BuildableName = "TimeAndPlace.app"
+            BlueprintName = "TimeAndPlace"
+            ReferencedContainer = "container:TimeAndPlace.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,10 +94,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14203A161FBB177E00B6BD85"
-            BuildableName = "Tut1.app"
-            BlueprintName = "Tut1"
-            ReferencedContainer = "container:Tut1.xcodeproj">
+            BlueprintIdentifier = "149CBBDC1FC3137400C5359B"
+            BuildableName = "TimeAndPlace.app"
+            BlueprintName = "TimeAndPlace"
+            ReferencedContainer = "container:TimeAndPlace.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

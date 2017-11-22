@@ -15,6 +15,13 @@
 		14203A2A1FBB177E00B6BD85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14203A281FBB177E00B6BD85 /* LaunchScreen.storyboard */; };
 		14203A351FBB177E00B6BD85 /* Tut1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14203A341FBB177E00B6BD85 /* Tut1Tests.m */; };
 		14203A401FBB177E00B6BD85 /* Tut1UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14203A3F1FBB177E00B6BD85 /* Tut1UITests.m */; };
+		14203A8E1FBB1A0900B6BD85 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14203A8D1FBB1A0900B6BD85 /* UserNotifications.framework */; };
+		14203A901FBB1A1200B6BD85 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14203A8F1FBB1A1200B6BD85 /* NotificationCenter.framework */; };
+		14203A921FBB1A1A00B6BD85 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14203A911FBB1A1A00B6BD85 /* UserNotificationsUI.framework */; };
+		14203AD41FBB351700B6BD85 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14203AD31FBB351700B6BD85 /* TableViewController.m */; };
+		149C2A261FC2E28C00556BC0 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 149C2A251FC2E28C00556BC0 /* DataModel.m */; };
+		149CBBD11FC310A600C5359B /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = 149CBBD01FC310A600C5359B /* Alarm.m */; };
+		149CBBD31FC311A200C5359B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 149CBBD21FC311A200C5359B /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +47,7 @@
 		14203A1D1FBB177E00B6BD85 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		14203A1E1FBB177E00B6BD85 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		14203A201FBB177E00B6BD85 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		14203A211FBB177E00B6BD85 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		14203A211FBB177E00B6BD85 /* ViewController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; name = ViewController.m; path = Tut1/ViewController.m; sourceTree = SOURCE_ROOT; };
 		14203A241FBB177E00B6BD85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14203A261FBB177E00B6BD85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14203A291FBB177E00B6BD85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +58,16 @@
 		14203A3B1FBB177E00B6BD85 /* Tut1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tut1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14203A3F1FBB177E00B6BD85 /* Tut1UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tut1UITests.m; sourceTree = "<group>"; };
 		14203A411FBB177E00B6BD85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14203A8D1FBB1A0900B6BD85 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		14203A8F1FBB1A1200B6BD85 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		14203A911FBB1A1A00B6BD85 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		14203AD21FBB351700B6BD85 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		14203AD31FBB351700B6BD85 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		149C2A241FC2E28C00556BC0 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
+		149C2A251FC2E28C00556BC0 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
+		149CBBCF1FC310A600C5359B /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alarm.h; sourceTree = "<group>"; };
+		149CBBD01FC310A600C5359B /* Alarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alarm.m; sourceTree = "<group>"; };
+		149CBBD21FC311A200C5359B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +75,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				149CBBD31FC311A200C5359B /* MapKit.framework in Frameworks */,
+				14203A921FBB1A1A00B6BD85 /* UserNotificationsUI.framework in Frameworks */,
+				14203A901FBB1A1200B6BD85 /* NotificationCenter.framework in Frameworks */,
+				14203A8E1FBB1A0900B6BD85 /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +106,7 @@
 				14203A331FBB177E00B6BD85 /* Tut1Tests */,
 				14203A3E1FBB177E00B6BD85 /* Tut1UITests */,
 				14203A181FBB177E00B6BD85 /* Products */,
+				14203A8C1FBB1A0900B6BD85 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +128,12 @@
 				14203A201FBB177E00B6BD85 /* ViewController.h */,
 				14203A211FBB177E00B6BD85 /* ViewController.m */,
 				14203A231FBB177E00B6BD85 /* Main.storyboard */,
+				149C2A251FC2E28C00556BC0 /* DataModel.m */,
+				149C2A241FC2E28C00556BC0 /* DataModel.h */,
+				149CBBCF1FC310A600C5359B /* Alarm.h */,
+				149CBBD01FC310A600C5359B /* Alarm.m */,
+				14203AD21FBB351700B6BD85 /* TableViewController.h */,
+				14203AD31FBB351700B6BD85 /* TableViewController.m */,
 				14203A261FBB177E00B6BD85 /* Assets.xcassets */,
 				14203A281FBB177E00B6BD85 /* LaunchScreen.storyboard */,
 				14203A2B1FBB177E00B6BD85 /* Info.plist */,
@@ -138,6 +166,17 @@
 				14203A411FBB177E00B6BD85 /* Info.plist */,
 			);
 			path = Tut1UITests;
+			sourceTree = "<group>";
+		};
+		14203A8C1FBB1A0900B6BD85 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				149CBBD21FC311A200C5359B /* MapKit.framework */,
+				14203A911FBB1A1A00B6BD85 /* UserNotificationsUI.framework */,
+				14203A8F1FBB1A1200B6BD85 /* NotificationCenter.framework */,
+				14203A8D1FBB1A0900B6BD85 /* UserNotifications.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +315,9 @@
 				14203A221FBB177E00B6BD85 /* ViewController.m in Sources */,
 				14203A1F1FBB177E00B6BD85 /* AppDelegate.m in Sources */,
 				14203A1C1FBB177E00B6BD85 /* main.m in Sources */,
+				149CBBD11FC310A600C5359B /* Alarm.m in Sources */,
+				14203AD41FBB351700B6BD85 /* TableViewController.m in Sources */,
+				149C2A261FC2E28C00556BC0 /* DataModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,7 +468,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Tut1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.leeds.el16ja.Tut1;
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.ac.leeds.el16ja.2660Project-alarmClock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -437,7 +479,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Tut1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.leeds.el16ja.Tut1;
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.ac.leeds.el16ja.2660Project-alarmClock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -507,6 +549,7 @@
 				14203A461FBB177E00B6BD85 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		14203A471FBB177E00B6BD85 /* Build configuration list for PBXNativeTarget "Tut1Tests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +558,7 @@
 				14203A491FBB177E00B6BD85 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		14203A4A1FBB177E00B6BD85 /* Build configuration list for PBXNativeTarget "Tut1UITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +567,7 @@
 				14203A4C1FBB177E00B6BD85 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

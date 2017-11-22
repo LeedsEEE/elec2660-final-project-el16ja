@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UserNotifications/UserNotifications.h>
+#import "DataModel.h"
+#import "Alarm.h"
 
 @interface ViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIDatePicker *picker;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+- (IBAction)setAlarm:(UIButton *)sender;
 
 
 @end
