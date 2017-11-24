@@ -14,9 +14,12 @@
 
 @implementation ViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    DataModel *data = [DataModel sharedInstance]; //from craig evans
+    
+    
     
 
     // Do any additional setup after loading the view, typically from a nib.
@@ -30,6 +33,7 @@
 
 
 - (IBAction)setAlarm:(UIButton *)sender {
+    DataModel *alarmData = [DataModel alarmShare];
     // ----------------------------------------------------
     //                        CONFIGURE A NOTIFICATION
     // ----------------------------------------------------
@@ -44,30 +48,43 @@
      Call the addNotificationRequest:withCompletionHandler: method to schedule the notification; see Scheduling Local Notifications for Delivery
      */
     
+    NSDate *date = [self.picker date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"HH:mm cccc d MMM"];
+    NSLog(@"date = %@",date);
+    NSString *identifier = [dateFormat stringFromDate:date];
+    NSLog(@"identifier = %@",identifier);
+    
+    
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
     UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
     content.title = [NSString localizedUserNotificationStringForKey:@"Wake up!" arguments:nil];
     content.body = [NSString localizedUserNotificationStringForKey:@"Rise and shine! It's morning time!"arguments:nil];
     
+    // Configure the trigger for a 7am wakeup
     
+    NSDateComponents* dateComponents = [[NSDateComponents alloc] init];
+    dateComponents.year = [gregorianCalendar component:NSCalendarUnitYear fromDate:date];
+    dateComponents.month = [gregorianCalendar component:NSCalendarUnitMonth fromDate:date];
+    dateComponents.hour = [gregorianCalendar component:NSCalendarUnitDay fromDate:date];
+    dateComponents.minute = [gregorianCalendar component:NSCalendarUnitHour fromDate:date];
+    dateComponents.day = [gregorianCalendar component:NSCalendarUnitMinute fromDate:date];
+
     
-    // Configure the trigger for a 7am wakeup.
-    NSDateComponents* date = [[NSDateComponents alloc] init];
-    date.hour = 7;
-    date.minute = 0;
     UNCalendarNotificationTrigger* trigger = [UNCalendarNotificationTrigger
-                                              triggerWithDateMatchingComponents:date repeats:NO];
+                                              triggerWithDateMatchingComponents:dateComponents repeats:NO];
     
     // Create the request object.
     UNNotificationRequest* request = [UNNotificationRequest
-                                      requestWithIdentifier:@"MorningAlarm" content:content trigger:trigger];
+                                      requestWithIdentifier: identifier content:content trigger:trigger];
     
+
     // ----------------------------------------------------------------------------------------------------------------------------
     //                     SCHEDULING NOTIFICATION FOR DELIVERY
     // ----------------------------------------------------------------------------------------------------------------------------
     
     // Create the request object.
-    //UNNotificationRequest* request = [UNNotificationRequest
-                                     // requestWithIdentifier:@"MorningAlarm" content:content trigger:trigger];
     
     UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
     [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
@@ -75,9 +92,11 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    
-    
+    [alarmData storeAlarmInArraywithIdentifier: (NSString *) identifier
+            withcontent: (UNMutableNotificationContent *)content];
     
     
 }
+
+
 @end

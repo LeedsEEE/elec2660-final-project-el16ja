@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UserNotifications/UserNotifications.h>
 #import "Alarm.h"
 
 
@@ -15,6 +16,7 @@
 
 @property (strong, nonatomic) NSMutableArray *alarms;
 
-+ (DataModel *) sharedInstance;
-- (void) storeAlarmInArray: (Alarm *) alarm;
++ (DataModel *) alarmShare;
+- (void) storeAlarmInArraywithIdentifier: (NSString *) identifier
+                      withcontent: (UNMutableNotificationContent *) content;
 @end

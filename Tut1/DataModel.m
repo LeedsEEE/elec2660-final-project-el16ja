@@ -10,30 +10,41 @@
 
 @implementation DataModel
 
-static DataModel *_sharedInstance;
+static DataModel *_alarmShare;
 
 - (id) init {
     if (self = [super init]) {
-        self.alarms = [[NSMutableArray array] init];
+        self.alarms = [NSMutableArray array];
+        Alarm *testAlarm = [[Alarm alloc] init];
+        testAlarm.identifier = @"identifier of testAlarm!";
+        [self.alarms addObject:testAlarm];
+        
     }
     return self;
 }
 
-+ (DataModel  *) sharedInstance
++ (DataModel  *) alarmShare;
 {
-    if (!_sharedInstance) {
-        _sharedInstance = [[DataModel alloc] init];
+    if (!_alarmShare) {
+        _alarmShare = [[DataModel alloc] init];
+        _alarmShare.alarms = [NSMutableArray array];
     }
-    return _sharedInstance;
+    return _alarmShare;
 }
 
 - (void) storeAlarmInArraywithIdentifier: (NSString *) identifier
-                      withDateTimeString: (NSDate *) dateTimeString
+                      withcontent: (UNMutableNotificationContent *) content
 
             {
-                Alarm *alarmDetails = [[Alarm alloc] init];
+                 Alarm *alarmDetails = [[Alarm alloc] init];
+                alarmDetails.content = content;
                 alarmDetails.identifier = identifier;
-                alarmDetails.dateTimeString = dateTimeString;
+                [_alarmShare.alarms addObject:alarmDetails];
+                Alarm *placementObject = _alarmShare.alarms[0];
+                NSLog(@"identifier stored: %@ ",placementObject.identifier);
+                
+                
+
                 
 }
 

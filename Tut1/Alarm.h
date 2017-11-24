@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UserNotifications/UserNotifications.h>
 
 @interface Alarm : NSObject
 
-@property (nonatomic,strong) NSDate *dateTimeString;
 @property (nonatomic,strong) NSString *identifier;
+@property (nonatomic, strong) UNMutableNotificationContent *content;
+
 
 
 

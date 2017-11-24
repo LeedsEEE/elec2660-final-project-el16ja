@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    DataModel *alarmData = [DataModel alarmShare];
+    
     // snippet from developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/SupportingNotificationsinYourApp.html#//apple_ref/doc/uid/TP40008194-CH4-SW1 - The Apple User guide to notifications
     UNUserNotificationCenter* notificationCenter = [UNUserNotificationCenter currentNotificationCenter];
     [notificationCenter requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound)
@@ -65,44 +67,56 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    //Only Need 1 Section
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 1;
+    DataModel *alarmData = [DataModel alarmShare];
+    NSInteger numberofrows= [alarmData.alarms count];
+    //NSLog(@"numberofrows = %ld",numberofrows);
+    return numberofrows;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"alarmCell" forIndexPath:indexPath];
+    if(indexPath.section == 0){
+        DataModel *alarmData = [DataModel alarmShare];
+        Alarm *tempAlarm = [alarmData.alarms objectAtIndex:indexPath.row];
+        cell.textLabel.text = tempAlarm.identifier;
+    }
     
-    // Configure the cell...
     
     return cell;
 }
 
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
+
+
+//Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+        DataModel *alarmData = [DataModel alarmShare];
+        Alarm *deletedAlarm = alarmData.alarms[indexPath.row];
+        NSArray *identifiers = [NSArray arrayWithObjects:deletedAlarm.identifier,nil];
+        UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+        [center removePendingNotificationRequestsWithIdentifiers:identifiers];
+        [alarmData.alarms removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        [tableView reloadData];
+        NSLog(@"Notifcation Removed.");
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -129,6 +143,7 @@
 */
 
 - (IBAction)deleteAlarm:(UIButton *)sender {
+    
     // -----------------------------------------------------
     //                     REMOVING A NOTIFICATION
     // -----------------------------------------------------
@@ -144,5 +159,6 @@
      request identifier, call the removeAllPendingNotificationRequests method instead
      */
 }
+
 
 @end
