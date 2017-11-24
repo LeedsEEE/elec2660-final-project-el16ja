@@ -20,37 +20,12 @@
     DataModel *alarmData = [DataModel alarmShare];
     
     // snippet from developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/SupportingNotificationsinYourApp.html#//apple_ref/doc/uid/TP40008194-CH4-SW1 - The Apple User guide to notifications
-    UNUserNotificationCenter* notificationCenter = [UNUserNotificationCenter currentNotificationCenter];
-    [notificationCenter requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound)
-                          completionHandler:^(BOOL granted, NSError * _Nullable error) {
-                           
-                              if (granted == YES){ // if permission is allowed
-                                  NSLog(@"Permission Granted.");
-                              }
-                              else { // if permission is not allowed
-                                  NSLog(@"%@", error);
-                              }
-                              
-                          }];
+
     
-        // Create the custom actions for expired timer notifications.
-    UNNotificationAction* snoozeAction = [UNNotificationAction
-                                          actionWithIdentifier:@"Snooze"
-                                          title:@"Snooze"
-                                          options:UNNotificationActionOptionNone];
-        // Register the notification categories.
-    UNNotificationAction* stopAction = [UNNotificationAction
-                                        actionWithIdentifier:@"Stop"
-                                        title:@"Stop"
-                                        options:UNNotificationActionOptionForeground];
     
-    UNNotificationCategory* alarmCategory = [UNNotificationCategory
-                                             categoryWithIdentifier:@"alarm"
-                                             actions:@[snoozeAction, stopAction]
-                                             intentIdentifiers:@[]
-                                             options:UNNotificationCategoryOptionCustomDismissAction];
-        // Register Notification categories.
-    [notificationCenter setNotificationCategories:[NSSet setWithObjects:alarmCategory, nil]];
+    // Keeping the notification sent even when app is in the foreground.
+    
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

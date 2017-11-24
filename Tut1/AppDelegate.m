@@ -16,7 +16,38 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    // Authorisation of Location use
+    UNUserNotificationCenter* notificationCenter = [UNUserNotificationCenter currentNotificationCenter];
+    [notificationCenter requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound)
+                                      completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                                          
+                                          if (granted == YES){ // if permission is allowed
+                                              NSLog(@"Permission Granted.");
+                                          }
+                                          else { // if permission is not allowed
+                                              NSLog(@"%@", error);
+                                          }
+    }];
+    
+    // Create the custom actions for expired notifications.
+    UNNotificationAction* snoozeAction = [UNNotificationAction
+                                          actionWithIdentifier:@"Snooze"
+                                          title:@"Snooze"
+                                          options:UNNotificationActionOptionNone];
+    // Register the notification categories.
+    UNNotificationAction* dismissAction = [UNNotificationAction
+                                           actionWithIdentifier:@"Dismiss"
+                                           title:@"Dismiss"
+                                           options:UNNotificationActionOptionForeground];
+    
+    UNNotificationCategory* alarmCategory = [UNNotificationCategory
+                                             categoryWithIdentifier:@"alarm"
+                                             actions:@[snoozeAction, dismissAction]
+                                             intentIdentifiers:@[]
+                                             options:UNNotificationCategoryOptionCustomDismissAction];
+    // Register Notification categories.
+    [notificationCenter setNotificationCategories:[NSSet setWithObjects:alarmCategory, nil]];
+
     return YES;
 }
 

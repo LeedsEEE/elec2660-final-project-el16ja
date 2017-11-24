@@ -18,10 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    
-
+    self.picker.minimumDate = [self.picker date];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -67,9 +64,9 @@
     NSDateComponents* dateComponents = [[NSDateComponents alloc] init];
     dateComponents.year = [gregorianCalendar component:NSCalendarUnitYear fromDate:date];
     dateComponents.month = [gregorianCalendar component:NSCalendarUnitMonth fromDate:date];
-    dateComponents.hour = [gregorianCalendar component:NSCalendarUnitDay fromDate:date];
-    dateComponents.minute = [gregorianCalendar component:NSCalendarUnitHour fromDate:date];
-    dateComponents.day = [gregorianCalendar component:NSCalendarUnitMinute fromDate:date];
+    dateComponents.day = [gregorianCalendar component:NSCalendarUnitDay fromDate:date];
+    dateComponents.hour = [gregorianCalendar component:NSCalendarUnitHour fromDate:date];
+    dateComponents.minute = [gregorianCalendar component:NSCalendarUnitMinute fromDate:date];
 
     
     UNCalendarNotificationTrigger* trigger = [UNCalendarNotificationTrigger
