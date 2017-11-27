@@ -22,10 +22,10 @@
                                       completionHandler:^(BOOL granted, NSError * _Nullable error) {
                                           
                                           if (granted == YES){ // if permission is allowed
-                                              NSLog(@"Permission Granted.");
+                                              NSLog(@"*NSLOG>  Permission Granted.");
                                           }
                                           else { // if permission is not allowed
-                                              NSLog(@"%@", error);
+                                              NSLog(@"*NSLOG>  %@", error);
                                           }
     }];
     

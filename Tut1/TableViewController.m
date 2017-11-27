@@ -88,7 +88,7 @@
         [alarmData.alarms removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [tableView reloadData];
-        NSLog(@"Notifcation Removed.");
+        NSLog(@"*NSLOG>  Notifcation Removed.");
     }   
 }
 

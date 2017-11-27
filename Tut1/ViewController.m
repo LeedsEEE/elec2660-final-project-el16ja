@@ -48,9 +48,9 @@
     NSDate *date = [self.picker date];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
     [dateFormat setDateFormat:@"HH:mm cccc d MMM"];
-    NSLog(@"date = %@",date);
+    NSLog(@"*NSLOG>  date = %@",date);
     NSString *identifier = [dateFormat stringFromDate:date];
-    NSLog(@"identifier = %@",identifier);
+    NSLog(@"*NSLOG>  identifier = %@",identifier);
     
     
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
@@ -86,7 +86,7 @@
     UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
     [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
         if (error != nil) {
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(@"*NSLOG>  %@", error.localizedDescription);
         }
     }];
     [alarmData storeAlarmInArraywithIdentifier: (NSString *) identifier

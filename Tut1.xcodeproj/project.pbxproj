@@ -22,6 +22,8 @@
 		149C2A261FC2E28C00556BC0 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 149C2A251FC2E28C00556BC0 /* DataModel.m */; };
 		149CBBD11FC310A600C5359B /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = 149CBBD01FC310A600C5359B /* Alarm.m */; };
 		149CBBD31FC311A200C5359B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 149CBBD21FC311A200C5359B /* MapKit.framework */; };
+		14A325FE1FCC1D11005B518B /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A325FD1FCC1D11005B518B /* MapViewController.m */; };
+		14A326001FCC1D27005B518B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A325FF1FCC1D27005B518B /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,9 @@
 		149CBBCF1FC310A600C5359B /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alarm.h; sourceTree = "<group>"; };
 		149CBBD01FC310A600C5359B /* Alarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alarm.m; sourceTree = "<group>"; };
 		149CBBD21FC311A200C5359B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		14A325FC1FCC1D11005B518B /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		14A325FD1FCC1D11005B518B /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		14A325FF1FCC1D27005B518B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14A326001FCC1D27005B518B /* CoreLocation.framework in Frameworks */,
 				149CBBD31FC311A200C5359B /* MapKit.framework in Frameworks */,
 				14203A921FBB1A1A00B6BD85 /* UserNotificationsUI.framework in Frameworks */,
 				14203A901FBB1A1200B6BD85 /* NotificationCenter.framework in Frameworks */,
@@ -128,6 +134,8 @@
 				14203A201FBB177E00B6BD85 /* ViewController.h */,
 				14203A211FBB177E00B6BD85 /* ViewController.m */,
 				14203A231FBB177E00B6BD85 /* Main.storyboard */,
+				14A325FC1FCC1D11005B518B /* MapViewController.h */,
+				14A325FD1FCC1D11005B518B /* MapViewController.m */,
 				149C2A251FC2E28C00556BC0 /* DataModel.m */,
 				149C2A241FC2E28C00556BC0 /* DataModel.h */,
 				149CBBCF1FC310A600C5359B /* Alarm.h */,
@@ -171,6 +179,7 @@
 		14203A8C1FBB1A0900B6BD85 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14A325FF1FCC1D27005B518B /* CoreLocation.framework */,
 				149CBBD21FC311A200C5359B /* MapKit.framework */,
 				14203A911FBB1A1A00B6BD85 /* UserNotificationsUI.framework */,
 				14203A8F1FBB1A1200B6BD85 /* NotificationCenter.framework */,
@@ -318,6 +327,7 @@
 				149CBBD11FC310A600C5359B /* Alarm.m in Sources */,
 				14203AD41FBB351700B6BD85 /* TableViewController.m in Sources */,
 				149C2A261FC2E28C00556BC0 /* DataModel.m in Sources */,
+				14A325FE1FCC1D11005B518B /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
