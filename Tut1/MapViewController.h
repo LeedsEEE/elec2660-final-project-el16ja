@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) CLLocationManager *location;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property CLLocationDistance radius;
 
 
 //------------Part 1 of the lab (may not be needed) --------------

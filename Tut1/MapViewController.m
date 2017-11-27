@@ -105,12 +105,28 @@
     //if(longPress.state == UIGestureRecognizerStateBegan){
         
    // }
+     self.radius = 1000.00;
      CGPoint touchPoint = [longPress locationInView:self.mapView];
      CLLocationCoordinate2D annotationCoords = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
-     MKPointAnnotation *annotation = [[MKPointAnnotation alloc]init];
+     
+     
+     /* Point Notification
+      MKPointAnnotation *annotation = [[MKPointAnnotation alloc]init];
      annotation.coordinate = annotationCoords;
-     [self.mapView addAnnotation:annotation];
-    
+     annotation.title = @"placeholder title";
+     annotation.subtitle = @"placeholder radius";
+     */
+     
+     MKCircle *annotationCircle = [MKCircle circleWithCenterCoordinate:annotationCoords radius:self.radius]; // to create an annotation with an area (circular)
+     annotationCircle.title = @"placeholder title";
+     annotationCircle.subtitle = @"placeholder radius";
+     // to do - create circle overlay
+     
+
+     [self.mapView addAnnotation:annotationCircle]; // method to add annotation
+     
+     
+     //[self.mapView addOverlay:(nonnull id<MKOverlay>)];
 }
 
 
