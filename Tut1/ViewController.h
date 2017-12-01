@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *picker;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 - (IBAction)setAlarm:(UIButton *)sender;
+- (IBAction)backgroundPressed:(UIControl *)sender;
+
 
 
 @end

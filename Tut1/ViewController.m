@@ -52,12 +52,13 @@
     NSString *identifier = [dateFormat stringFromDate:date];
     NSLog(@"*NSLOG>  identifier = %@",identifier);
     
+    NSString *notificationContent = self.textField.text; // the notification content string
     
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     
     UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
-    content.title = [NSString localizedUserNotificationStringForKey:@"Wake up!" arguments:nil];
-    content.body = [NSString localizedUserNotificationStringForKey:@"Rise and shine! It's morning time!"arguments:nil];
+    content.title = [NSString localizedUserNotificationStringForKey:notificationContent arguments:nil];
+    content.body = [NSString localizedUserNotificationStringForKey:@"Tap here to open the app."arguments:nil];
     
     // Configure the trigger for a 7am wakeup
     
@@ -93,6 +94,12 @@
             withcontent: (UNMutableNotificationContent *)content];
     
     
+}
+
+- (IBAction)backgroundPressed:(UIControl *)sender {
+    if ([self.textField isFirstResponder]){
+        [self.textField resignFirstResponder];
+    }
 }
 
 

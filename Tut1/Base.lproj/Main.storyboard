@@ -87,7 +87,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9T3-BR-cU1">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9T3-BR-cU1">
+                                <frame key="frameInset" width="1000" height="1000"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="dgZ-S1-yFY" appends="YES" id="0NA-y2-B7e"/>
@@ -137,7 +138,7 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -202,6 +203,9 @@
                             <constraint firstItem="esw-cW-vGt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r2Q-SP-PDm"/>
                             <constraint firstItem="FXN-dy-jnY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="29" id="rPS-JH-gZt"/>
                         </constraints>
+                        <connections>
+                            <action selector="backgroundPressed:" destination="BYZ-38-t0r" eventType="valueChanged" id="XFp-gA-7be"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="picker" destination="FXN-dy-jnY" id="HrV-mW-krf"/>
