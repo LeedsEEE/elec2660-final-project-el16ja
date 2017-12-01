@@ -153,15 +153,19 @@
     customPinView.canShowCallout = YES;
     customPinView.draggable = YES;
     // Because this is an iOS app, add the detail disclosure button to display details about the annotation in another view.
-    
+    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *bin = [UIImage imageNamed:@"Bin.png"];
+    deleteButton.frame = CGRectMake(0.0, 0.0, 40,40);
+    [deleteButton setBackgroundImage:bin forState:UIControlStateNormal];
+    [deleteButton addTarget:annotation action:nil forControlEvents:UIControlEventTouchUpInside];
     //@selector(mapView:annotationView:calloutAccessoryControlTapped:)
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [rightButton addTarget:annotation action:nil forControlEvents:UIControlEventTouchUpInside];
     customPinView.rightCalloutAccessoryView = rightButton;
     
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    [leftButton addTarget:annotation action:nil forControlEvents:UIControlEventTouchUpInside];
-    customPinView.leftCalloutAccessoryView = leftButton;
+    /* UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    [leftButton addTarget:annotation action:nil forControlEvents:UIControlEventTouchUpInside]; */
+    customPinView.leftCalloutAccessoryView = deleteButton;
     
     // Add a custom image to the left side of the callout.
     //UIImageView *myCustomImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MyCustomImage.png"]];

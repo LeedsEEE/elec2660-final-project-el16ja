@@ -59,6 +59,7 @@
     UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
     content.title = [NSString localizedUserNotificationStringForKey:notificationContent arguments:nil];
     content.body = [NSString localizedUserNotificationStringForKey:@"Tap here to open the app."arguments:nil];
+    content.sound = [UNNotificationSound defaultSound]; // plays default sound
     
     // Configure the trigger for a 7am wakeup
     
