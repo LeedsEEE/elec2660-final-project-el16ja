@@ -10,6 +10,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 #import <UserNotifications/UserNotifications.h>
+#import "Annotation.h"
+#import "annotationDataModel.h"
 
 
 
@@ -20,6 +22,7 @@
 @property CLLocationDistance radius;
 @property CLLocationCoordinate2D annotationCoords;
 @property NSString *identifier;
+@property MKCircle *overlay;
 
 
 
@@ -31,6 +34,16 @@
 
 - (IBAction)mapTypeSelect:(UISegmentedControl *)sender;
 - (IBAction)addAnnotation:(UILongPressGestureRecognizer *)longPress;
+
+#pragma mark core location delegate methods
+
+- (void)locationManager:(CLLocationManager *)manager
+         didEnterRegion:(CLRegion *)region;
+
+- (void)locationManager:(CLLocationManager *)manager
+didStartMonitoringForRegion:(CLRegion *)region;
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation;
 
 #pragma mark Map delegate methods
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation;

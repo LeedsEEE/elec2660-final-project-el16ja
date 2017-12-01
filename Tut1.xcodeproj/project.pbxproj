@@ -19,6 +19,8 @@
 		14203A901FBB1A1200B6BD85 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14203A8F1FBB1A1200B6BD85 /* NotificationCenter.framework */; };
 		14203A921FBB1A1A00B6BD85 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14203A911FBB1A1A00B6BD85 /* UserNotificationsUI.framework */; };
 		14203AD41FBB351700B6BD85 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14203AD31FBB351700B6BD85 /* TableViewController.m */; };
+		14910E521FD18A9E00E448AA /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14910E511FD18A9E00E448AA /* Annotation.m */; };
+		14910E551FD18EF500E448AA /* annotationDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14910E541FD18EF500E448AA /* annotationDataModel.m */; };
 		149C2A261FC2E28C00556BC0 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 149C2A251FC2E28C00556BC0 /* DataModel.m */; };
 		149CBBD11FC310A600C5359B /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = 149CBBD01FC310A600C5359B /* Alarm.m */; };
 		149CBBD31FC311A200C5359B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 149CBBD21FC311A200C5359B /* MapKit.framework */; };
@@ -65,6 +67,10 @@
 		14203A911FBB1A1A00B6BD85 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		14203AD21FBB351700B6BD85 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		14203AD31FBB351700B6BD85 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		14910E501FD18A9E00E448AA /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
+		14910E511FD18A9E00E448AA /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
+		14910E531FD18EF500E448AA /* annotationDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = annotationDataModel.h; path = ../annotationDataModel.h; sourceTree = "<group>"; };
+		14910E541FD18EF500E448AA /* annotationDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = annotationDataModel.m; path = ../annotationDataModel.m; sourceTree = "<group>"; };
 		149C2A241FC2E28C00556BC0 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
 		149C2A251FC2E28C00556BC0 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
 		149CBBCF1FC310A600C5359B /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alarm.h; sourceTree = "<group>"; };
@@ -129,6 +135,10 @@
 		14203A191FBB177E00B6BD85 /* Tut1 */ = {
 			isa = PBXGroup;
 			children = (
+				14910E531FD18EF500E448AA /* annotationDataModel.h */,
+				14910E541FD18EF500E448AA /* annotationDataModel.m */,
+				14910E501FD18A9E00E448AA /* Annotation.h */,
+				14910E511FD18A9E00E448AA /* Annotation.m */,
 				14203A1D1FBB177E00B6BD85 /* AppDelegate.h */,
 				14203A1E1FBB177E00B6BD85 /* AppDelegate.m */,
 				14203A201FBB177E00B6BD85 /* ViewController.h */,
@@ -321,8 +331,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14910E551FD18EF500E448AA /* annotationDataModel.m in Sources */,
 				14203A221FBB177E00B6BD85 /* ViewController.m in Sources */,
 				14203A1F1FBB177E00B6BD85 /* AppDelegate.m in Sources */,
+				14910E521FD18A9E00E448AA /* Annotation.m in Sources */,
 				14203A1C1FBB177E00B6BD85 /* main.m in Sources */,
 				149CBBD11FC310A600C5359B /* Alarm.m in Sources */,
 				14203AD41FBB351700B6BD85 /* TableViewController.m in Sources */,

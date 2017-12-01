@@ -53,6 +53,7 @@
      [self.locationManager startMonitoringForRegion:bridge];
      */
     [self.location startUpdatingLocation];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,31 +87,28 @@
 //https://stackoverflow.com/questions/30858360/adding-a-pin-annotation-to-a-map-view-on-a-long-press-in-swift
 
  - (IBAction)addAnnotation:(UILongPressGestureRecognizer *)longPress {
-    //if(longPress.state == UIGestureRecognizerStateBegan){
+    if(longPress.state == UIGestureRecognizerStateBegan){
+        Annotation *annotation = [[Annotation alloc] init];
+        annotation.radius = 500.00;
+        CGPoint touchPoint = [longPress locationInView:self.mapView];
+        annotation.coords = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+        annotation.overlay = [MKCircle circleWithCenterCoordinate:annotation.coords radius:annotation.radius];// to create an annotation with an area (circular)
+        annotation.overlay.title = @"placeholder title";
+        annotation.overlay.subtitle = @"placeholder radius";
         
-   // }
-     self.radius = 500.00;
+        // to do - create circle overlay
+        // creates pin as described in the map delegate method
+        [self.mapView viewForAnnotation:annotation.overlay];
+        [self.mapView addAnnotation:annotation.overlay]; // method to add annotation
+        [self.mapView addOverlay:annotation.overlay]; // method to add overlay
+        self.identifier = annotation.overlay.title;
+        self.overlay = annotation.overlay;
+    }
      
-         CGPoint touchPoint = [longPress locationInView:self.mapView];
-         self.annotationCoords = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
      
-         /* Point Notification
-          MKPointAnnotation *annotation = [[MKPointAnnotation alloc]init];
-          annotation.coordinate = annotationCoords;
-          annotation.title = @"placeholder title";
-          annotation.subtitle = @"placeholder radius";
-          */
      
-         MKCircle *annotation = [MKCircle circleWithCenterCoordinate:self.annotationCoords radius:self.radius]; // to create an annotation with an area (circular)
-         annotation.title = @"placeholder title";
-         annotation.subtitle = @"placeholder radius";
-         // to do - create circle overlay
-          // creates pin as described in the map delegate method
-         [self.mapView viewForAnnotation:annotation];
-         [self.mapView addAnnotation:annotation]; // method to add annotation
-         [self.mapView addOverlay:annotation]; // method to add overlay
-     self.identifier = annotation.title;
-
+     
+     
      
      }
      
@@ -121,13 +119,17 @@
     CLRegion *geofence = [[CLCircularRegion alloc]initWithCenter:self.annotationCoords
                                                           radius:self.radius
                                                       identifier:self.identifier];
+    Annotation *annotation = [[Annotation alloc] init];
+    annotation.radius = 0.5;
+    MKPointAnnotation *pointAnnotation = view.annotation;
+    annotation.overlay = [MKCircle circleWithCenterCoordinate:pointAnnotation.coordinate radius:annotation.radius];
     if (control == view.rightCalloutAccessoryView){
         [self.location startMonitoringForRegion:geofence];
         NSLog(@"*NSLOG> monitoring...");
     }
     else if (control == view.leftCalloutAccessoryView){
+        [self.mapView removeOverlay:self.overlay];
         [self.mapView removeAnnotation:view.annotation];
-        //[self.mapView removeOverlay:overlay];
         [self.location stopMonitoringForRegion:geofence];
         NSLog(@"*NSLOG> geofence deleted.");
     }
@@ -140,6 +142,7 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
+
     // Try to dequeue an existing pin view first (code not shown).
     NSString *annotationIdentifier = (@"Default");
     // If no pin view already exists, create a new one.
@@ -164,6 +167,9 @@
     //UIImageView *myCustomImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MyCustomImage.png"]];
     //customPinView.leftCalloutAccessoryView = myCustomImage;
     
+    /* if([mapView userLocation]){
+        customPinView = nil;
+    } */
     return customPinView;
 }
 
@@ -211,7 +217,7 @@
         
         aRenderer.fillColor = [[UIColor cyanColor] colorWithAlphaComponent:0.2];
         aRenderer.strokeColor = [[UIColor blueColor] colorWithAlphaComponent:0.7];
-        aRenderer.lineWidth = 3;
+        aRenderer.lineWidth = 1;
         
         return aRenderer;
     }
@@ -219,4 +225,40 @@
     return nil;
 }
 
+#pragma mark core location delegate methods
+
+- (void)locationManager:(CLLocationManager *)manager
+         didEnterRegion:(CLRegion *)region{
+    NSLog(@"Trigger NOTIFICATION!");
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+didStartMonitoringForRegion:(CLRegion *)region{
+    UNLocationNotificationTrigger* trigger = [UNLocationNotificationTrigger
+                                              triggerWithRegion:region repeats:NO];
+    NSString *identifier = @"random identifier for location notificaiton";
+    
+    UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
+    content.title = [NSString localizedUserNotificationStringForKey:@"You wanted to go somewhere nearby?" arguments:nil];
+    content.body = [NSString localizedUserNotificationStringForKey:@"Tap here to open the app."arguments:nil];
+    
+    // Create the request object.
+    UNNotificationRequest* request = [UNNotificationRequest
+                                      requestWithIdentifier: identifier content:content trigger:trigger];
+    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"*NSLOG>  %@", error.localizedDescription);
+        }
+    }];
+    
+}
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
+    CLLocation *currentLocation = self.location.location;
+    CLLocationCoordinate2D locationcoords = currentLocation.coordinate;
+    MKCoordinateRegion region = MKCoordinateRegionMake(locationcoords, MKCoordinateSpanMake(0.05,0.05));
+    [self.mapView setRegion:region animated:YES];
+    
+}
 @end
