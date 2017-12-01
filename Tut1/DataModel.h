@@ -19,4 +19,5 @@
 + (DataModel *) alarmShare;
 - (void) storeAlarmInArraywithIdentifier: (NSString *) identifier
                       withcontent: (UNMutableNotificationContent *) content;
+- (void) loadArray;
 @end

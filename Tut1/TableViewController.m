@@ -17,10 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    DataModel *alarmData = [DataModel alarmShare];
-    
     // snippet from developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/SupportingNotificationsinYourApp.html#//apple_ref/doc/uid/TP40008194-CH4-SW1 - The Apple User guide to notifications
-
+    DataModel *initAlarmArray = [DataModel alarmShare];
+    [initAlarmArray loadArray];
     
     
     // Keeping the notification sent even when app is in the foreground.

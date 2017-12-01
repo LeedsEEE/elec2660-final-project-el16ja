@@ -48,4 +48,22 @@ static DataModel *_alarmShare;
                 
 }
 
+-(void) loadArray {
+    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
+    NSData *dataRepresentingSavedArray = [currentDefaults objectForKey:@"alarms"];
+    if (dataRepresentingSavedArray != nil)
+    {
+        NSArray *oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingSavedArray];
+        if (oldSavedArray != nil)
+            _alarmShare.alarms = [[NSMutableArray alloc] initWithArray:oldSavedArray];
+        else
+            _alarmShare.alarms = [[NSMutableArray alloc] init];
+    }
+    
+    /*
+    NSArray *temp =[[NSArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults]objectForKey:@"alarms"]];
+    _alarmShare.alarms = [NSMutableArray arrayWithArray:temp];
+    [[NSUserDefaults standardUserDefaults] synchronize];*/
+}
+
 @end
