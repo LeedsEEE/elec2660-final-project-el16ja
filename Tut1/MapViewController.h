@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 #import <UserNotifications/UserNotifications.h>
+#import <EventKit/EventKit.h>
 #import "Annotation.h"
 #import "annotationDataModel.h"
 
@@ -23,14 +24,16 @@
 @property CLLocationCoordinate2D annotationCoords;
 @property NSString *identifier;
 @property MKCircle *overlay;
+@property Annotation *annotation;
+@property CLRegion *region;
 
+//text field properties/methods
+@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
+@property (weak, nonatomic) IBOutlet UITextField *radiusTextField;
+- (IBAction)titleTextFieldChanged:(UITextField *)sender;
+- (IBAction)radiusTextFieldChanged:(UITextField *)sender;
+- (IBAction)backgroundPressed:(UIControl *)sender;
 
-
-
-//------------Part 1 of the lab (may not be needed) --------------
-//@property CLLocationDegrees *latitude;
-//@property CLLocationDegrees *longitude;
-//----------------------------------------------------------------
 
 - (IBAction)mapTypeSelect:(UISegmentedControl *)sender;
 - (IBAction)addAnnotation:(UILongPressGestureRecognizer *)longPress;

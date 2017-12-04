@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UserNotifications/UserNotifications.h>
+#import <EventKit/EventKit.h>
 
 @interface Alarm : NSObject
 

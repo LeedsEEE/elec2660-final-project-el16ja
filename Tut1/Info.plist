@@ -6,6 +6,10 @@
     <string>This App needs access to your location</string>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>This App needs access to your location</string>
+    <key>NSRemindersUsageDescription</key>
+    <string>This App will need to send notifications</string>
+    <key>NSCalendarsUsageDescription</key>
+    <string>This App will need to send notifications</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

@@ -59,6 +59,9 @@
         DataModel *alarmData = [DataModel alarmShare];
         Alarm *tempAlarm = [alarmData.alarms objectAtIndex:indexPath.row];
         cell.textLabel.text = tempAlarm.identifier;
+        cell.detailTextLabel.text = tempAlarm.content.title;
+        cell.detailTextLabel.textColor = [UIColor grayColor];
+    
     }
     
     

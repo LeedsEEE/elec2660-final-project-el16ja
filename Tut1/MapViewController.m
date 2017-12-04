@@ -25,7 +25,16 @@
     if ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedAlways){
         [self.location requestAlwaysAuthorization];
     }
-
+    
+    // ALERT IMPLEMENTATION -----------------------------------------
+    // this section is from https://stackoverflow.com/questions/42173060/how-to-use-uialertcontroller
+    UIAlertController *startupAlert = [UIAlertController alertControllerWithTitle:@"Sorry!" message:@"Map can only support 1 annotation pin at a time." preferredStyle:UIAlertControllerStyleAlert]; // initiation method to create the UIAlertController
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]; // "cancel" action created with the Cancel style to make things unchanged when pressed.
+    [startupAlert addAction:cancel]; // adds the action to the alert.
+    [self presentViewController:startupAlert animated:YES completion:nil]; // presents the alert.
+    //----------------------------------------------------------------
+    
+    self.radius = 500;
     self.mapView.showsUserLocation = YES; // displays Map View at users location
     CLLocation *currentLocation = self.location.location;
     CLLocationCoordinate2D locationcoords = currentLocation.coordinate;
@@ -89,12 +98,22 @@
  - (IBAction)addAnnotation:(UILongPressGestureRecognizer *)longPress {
     if(longPress.state == UIGestureRecognizerStateBegan){
         Annotation *annotation = [[Annotation alloc] init];
-        annotation.radius = 500.00;
+        annotation.radius = self.radius;
         CGPoint touchPoint = [longPress locationInView:self.mapView];
         annotation.coords = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
         annotation.overlay = [MKCircle circleWithCenterCoordinate:annotation.coords radius:annotation.radius];// to create an annotation with an area (circular)
-        annotation.overlay.title = @"placeholder title";
-        annotation.overlay.subtitle = @"placeholder radius";
+        
+        if (self.titleTextField.text && self.titleTextField.text.length > 0) // it is NOT EMPTY
+        {
+            annotation.overlay.title = self.titleTextField.text;
+        }
+        else // it IS EMPTY
+        {
+            annotation.overlay.title = @"Annotation";
+        }
+        
+        NSString *subtitleString = [[NSString alloc]initWithFormat:(@"Radius: %.0f"),self.radius];
+        annotation.overlay.subtitle = subtitleString;
         
         // to do - create circle overlay
         // creates pin as described in the map delegate method
@@ -120,17 +139,47 @@
                                                           radius:self.radius
                                                       identifier:self.identifier];
     Annotation *annotation = [[Annotation alloc] init];
-    annotation.radius = 0.5;
+    annotation.radius = self.radius;
     MKPointAnnotation *pointAnnotation = view.annotation;
     annotation.overlay = [MKCircle circleWithCenterCoordinate:pointAnnotation.coordinate radius:annotation.radius];
     if (control == view.rightCalloutAccessoryView){
+        // EVENTKIT GEOFENCING IMPLEMENTATION ---------------------------
+        EKCalendarItem *calendarItem = [[EKCalendarItem alloc] init];
+        EKAlarm *alarmGeofence = [[EKAlarm alloc] init];
+        //alarmGeofence.structuredLocation.title = (@"%@",self.identifier);
+        alarmGeofence.structuredLocation.geoLocation = [[CLLocation alloc]initWithLatitude:annotation.coords.latitude longitude:annotation.coords.longitude];
+        alarmGeofence.structuredLocation.radius = self.radius;
+        alarmGeofence.proximity = self.radius;
+        [calendarItem addAlarm:alarmGeofence];
+        //---------------------------------------------------------------
+        
+        // CORE LOCATION GEOFENCING IMPLEMENTATION ----------------------
         [self.location startMonitoringForRegion:geofence];
+        //---------------------------------------------------------------
+        
+        // ALERT IMPLEMENTATION -----------------------------------------
+        // this section is from https://stackoverflow.com/questions/42173060/how-to-use-uialertcontroller
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Notification" message:@"Geofence created." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
+        //----------------------------------------------------------------
+        
         NSLog(@"*NSLOG> monitoring...");
     }
     else if (control == view.leftCalloutAccessoryView){
-        [self.mapView removeOverlay:self.overlay];
-        [self.mapView removeAnnotation:view.annotation];
-        [self.location stopMonitoringForRegion:geofence];
+        
+        [self.mapView removeOverlay:self.overlay]; //removes the overlay (the circle)
+        [self.mapView removeAnnotation:view.annotation]; // removes the pin annotation
+        [self.location stopMonitoringForRegion:geofence]; // stops monitoring selected region
+        
+        // ALERT IMPLEMENTATION -----------------------------------------
+        // this section is from https://stackoverflow.com/questions/42173060/how-to-use-uialertcontroller
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Notification" message:@"Geofence removed." preferredStyle:UIAlertControllerStyleAlert]; // initiation method to create the UIAlertController
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]; // "cancel" action created with the Cancel style to make things unchanged when pressed.
+        [alert addAction:cancel]; // adds the action to the alert.
+        [self presentViewController:alert animated:YES completion:nil]; // presents the alert.
+        //----------------------------------------------------------------
         NSLog(@"*NSLOG> geofence deleted.");
     }
     
@@ -154,9 +203,9 @@
     customPinView.draggable = YES;
     // Because this is an iOS app, add the detail disclosure button to display details about the annotation in another view.
     UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *bin = [UIImage imageNamed:@"Bin.png"];
+    UIImage *bin = [UIImage imageNamed:@"Bin.jpeg"];
     deleteButton.frame = CGRectMake(0.0, 0.0, 40,40);
-    [deleteButton setBackgroundImage:bin forState:UIControlStateNormal];
+    [deleteButton setImage:bin forState:UIControlStateNormal];
     [deleteButton addTarget:annotation action:nil forControlEvents:UIControlEventTouchUpInside];
     //@selector(mapView:annotationView:calloutAccessoryControlTapped:)
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
@@ -238,15 +287,14 @@
 
 - (void)locationManager:(CLLocationManager *)manager
 didStartMonitoringForRegion:(CLRegion *)region{
+    
+    //UNUserNotificationCenter GEOFENCING IMPLEMENTATION ----------------------------------------------------
     UNLocationNotificationTrigger* trigger = [UNLocationNotificationTrigger
                                               triggerWithRegion:region repeats:NO];
-    NSString *identifier = @"random identifier for location notificaiton";
-    
+    NSString *identifier = @"random identifier for location notification";
     UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
     content.title = [NSString localizedUserNotificationStringForKey:@"You wanted to go somewhere nearby?" arguments:nil];
     content.body = [NSString localizedUserNotificationStringForKey:@"Tap here to open the app."arguments:nil];
-    
-    // Create the request object.
     UNNotificationRequest* request = [UNNotificationRequest
                                       requestWithIdentifier: identifier content:content trigger:trigger];
     UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
@@ -255,6 +303,7 @@ didStartMonitoringForRegion:(CLRegion *)region{
             NSLog(@"*NSLOG>  %@", error.localizedDescription);
         }
     }];
+    // -------------------------------------------------------------------------------------------------------
     
 }
 
@@ -265,4 +314,26 @@ didStartMonitoringForRegion:(CLRegion *)region{
     [self.mapView setRegion:region animated:YES];
     
 }
+
+#pragma mark Text Field Methods
+
+- (IBAction)titleTextFieldChanged:(UITextField *)sender{
+    self.annotation.overlay.title = self.titleTextField.text;
+    
+}
+- (IBAction)radiusTextFieldChanged:(UITextField *)sender{
+    int radiusValue = [self.radiusTextField.text intValue];
+    //NSLog(@"*NSLOG> int value: %d", radiusValue);
+    self.radius = radiusValue;
+    
+}
+- (IBAction)backgroundPressed:(UIControl *)sender{
+    if ([self.titleTextField isFirstResponder]){
+        [self.titleTextField resignFirstResponder];
+    }
+    else if ([self.radiusTextField isFirstResponder]){
+        [self.radiusTextField resignFirstResponder];
+    }
+}
+
 @end

@@ -19,6 +19,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.picker.minimumDate = [self.picker date];
+    
+    self.center.delegate = self;
+    
+    // Authorisation of Location use
+    self.center = [UNUserNotificationCenter currentNotificationCenter];
+    
+    [self.center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound)
+                               completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                                   
+                                   if (granted == YES){ // if permission is allowed
+                                       NSLog(@"*NSLOG>  Permission Granted.");
+                                   }
+                                   else { // if permission is not allowed
+                                       NSLog(@"*NSLOG>  %@", error);
+                                   }
+                               }];
+    self.center = [UNUserNotificationCenter currentNotificationCenter];
+    // Create the custom actions for expired notifications.
+    UNNotificationAction* snoozeAction = [UNNotificationAction
+                                          actionWithIdentifier:@"Snooze"
+                                          title:@"Snooze"
+                                          options:UNNotificationActionOptionNone];
+    // Register the notification categories.
+    UNNotificationAction* dismissAction = [UNNotificationAction
+                                           actionWithIdentifier:@"Dismiss"
+                                           title:@"Dismiss"
+                                           options:UNNotificationActionOptionForeground];
+    
+    UNNotificationCategory* alarmCategory = [UNNotificationCategory
+                                             categoryWithIdentifier:@"alarm"
+                                             actions:@[snoozeAction, dismissAction]
+                                             intentIdentifiers:@[]
+                                             options:UNNotificationCategoryOptionCustomDismissAction];
+    // Register Notification categories.
+    [self.center setNotificationCategories:[NSSet setWithObjects:alarmCategory, nil]];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -58,7 +93,7 @@
     
     UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
     content.title = [NSString localizedUserNotificationStringForKey:notificationContent arguments:nil];
-    content.body = [NSString localizedUserNotificationStringForKey:@"Tap here to open the app."arguments:nil];
+    content.body = [NSString localizedUserNotificationStringForKey:@"Tap here to open the app!" arguments:nil];
     content.sound = [UNNotificationSound defaultSound]; // plays default sound
     
     // Configure the trigger for a 7am wakeup
@@ -85,8 +120,8 @@
     
     // Create the request object.
     
-    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
-    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+    
+    [self.center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
         if (error != nil) {
             NSLog(@"*NSLOG>  %@", error.localizedDescription);
         }
@@ -101,6 +136,17 @@
     if ([self.textField isFirstResponder]){
         [self.textField resignFirstResponder];
     }
+}
+
+#pragma mark UNUserNotificationCenterDelegate Methods
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+       willPresentNotification:(UNNotification *)notification
+         withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
+    // Update the app interface directly.
+    NSLog(@"*NSLOG> Notification in Foreground!");
+    completionHandler(UNNotificationPresentationOptionAlert);
+    //completionHandler(UNNotificationPresentationOptionSound);
 }
 
 

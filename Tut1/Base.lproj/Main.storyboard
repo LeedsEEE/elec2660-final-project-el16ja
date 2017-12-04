@@ -24,12 +24,28 @@
                             </connections>
                         </button>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="alarmCell" rowHeight="47" id="fZd-qk-GYh">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="alarmCell" textLabel="4KX-a0-IDa" detailTextLabel="6UL-Kg-gfr" rowHeight="47" style="IBUITableViewCellStyleValue1" id="fZd-qk-GYh">
                                 <rect key="frame" x="0.0" y="56" width="375" height="47"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fZd-qk-GYh" id="jjE-93-wDO">
                                     <frame key="frameInset" width="375" height="46"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4KX-a0-IDa">
+                                            <frame key="frameInset" minX="15" minY="13" width="34" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6UL-Kg-gfr">
+                                            <frame key="frameInset" minX="316" minY="13" width="44" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <gestureRecognizers/>
                                 <connections>
@@ -48,14 +64,6 @@
                 <swipeGestureRecognizer direction="left" id="l8u-l7-QBk"/>
             </objects>
             <point key="canvasLocation" x="-839.20000000000005" y="-420.53973013493254"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="hD3-VD-mTt">
-            <objects>
-                <viewController id="EgJ-Ib-7Ug" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wM3-mS-jEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-182" y="340"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="47d-vo-Sbd">
@@ -83,19 +91,13 @@
                         <viewControllerLayoutGuide type="top" id="PDI-9y-Wz5"/>
                         <viewControllerLayoutGuide type="bottom" id="GVv-xv-URn"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="g2g-dy-qgl">
+                    <view key="view" contentMode="scaleToFill" id="g2g-dy-qgl" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9T3-BR-cU1">
-                                <frame key="frameInset" width="1000" height="1000"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="dgZ-S1-yFY" appends="YES" id="0NA-y2-B7e"/>
-                                </connections>
-                            </mapView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d68-xk-hfB">
-                                <frame key="frameInset" minX="73" minY="20" width="239" height="29"/>
+                            <segmentedControl contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d68-xk-hfB">
+                                <frame key="frameInset" minX="68" minY="73" width="239" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Default"/>
                                     <segment title="Satellite"/>
@@ -105,20 +107,53 @@
                                     <action selector="mapTypeSelect:" destination="5GG-Fu-ntX" eventType="valueChanged" id="iHR-sN-n3X"/>
                                 </connections>
                             </segmentedControl>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Title..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mft-Od-lcD">
+                                <frame key="frameInset" minX="16" minY="18" width="203" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="titleTextFieldChanged:" destination="5GG-Fu-ntX" eventType="valueChanged" id="7Zd-4V-fzh"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Radius..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GAv-WH-Rjc">
+                                <frame key="frameInset" minX="262" minY="18" width="97" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="radiusTextFieldChanged:" destination="5GG-Fu-ntX" eventType="editingChanged" id="fpt-q3-OIo"/>
+                                </connections>
+                            </textField>
+                            <mapView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9T3-BR-cU1">
+                                <frame key="frameInset" minY="56" width="390" height="591"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="dgZ-S1-yFY" appends="YES" id="0NA-y2-B7e"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="9T3-BR-cU1" secondAttribute="trailing" constant="-20" id="3Mh-ex-Ka5"/>
-                            <constraint firstItem="d68-xk-hfB" firstAttribute="centerX" secondItem="g2g-dy-qgl" secondAttribute="centerX" id="8o8-Ha-t75"/>
-                            <constraint firstItem="GVv-xv-URn" firstAttribute="top" secondItem="9T3-BR-cU1" secondAttribute="bottom" constant="-20" id="AJF-Dn-Fem"/>
-                            <constraint firstItem="d68-xk-hfB" firstAttribute="top" secondItem="PDI-9y-Wz5" secondAttribute="bottom" id="QdT-pL-cJz"/>
-                            <constraint firstItem="9T3-BR-cU1" firstAttribute="top" secondItem="PDI-9y-Wz5" secondAttribute="bottom" constant="-20" id="ShB-zm-yL5"/>
-                            <constraint firstItem="9T3-BR-cU1" firstAttribute="leading" secondItem="g2g-dy-qgl" secondAttribute="leadingMargin" constant="-20" id="j8J-d0-URa"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="mft-Od-lcD" secondAttribute="leading" id="CBs-uu-F9R"/>
+                            <constraint firstItem="9T3-BR-cU1" firstAttribute="leading" secondItem="g2g-dy-qgl" secondAttribute="leadingMargin" constant="-20" id="Gkc-en-uY9"/>
+                            <constraint firstItem="GAv-WH-Rjc" firstAttribute="leading" secondItem="mft-Od-lcD" secondAttribute="trailing" constant="43" id="UXh-Pe-Fng"/>
+                            <constraint firstItem="GVv-xv-URn" firstAttribute="top" secondItem="9T3-BR-cU1" secondAttribute="bottom" constant="-16" id="VtW-XW-Odj"/>
+                            <constraint firstItem="9T3-BR-cU1" firstAttribute="top" secondItem="mft-Od-lcD" secondAttribute="bottom" constant="5" id="onq-56-Huu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9T3-BR-cU1" secondAttribute="trailing" constant="-20" id="rg7-IS-Ebm"/>
+                            <constraint firstItem="GAv-WH-Rjc" firstAttribute="top" secondItem="PDI-9y-Wz5" secondAttribute="bottom" constant="-2" id="s5J-cF-ED1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GAv-WH-Rjc" secondAttribute="trailing" id="xLt-A2-UVB"/>
+                            <constraint firstItem="mft-Od-lcD" firstAttribute="top" secondItem="PDI-9y-Wz5" secondAttribute="bottom" constant="-2" id="zrT-V0-oat"/>
                         </constraints>
+                        <connections>
+                            <action selector="backgroundPressed:" destination="5GG-Fu-ntX" eventType="touchUpInside" id="TmK-xo-TA3"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Place" id="fXf-6z-7vd"/>
                     <connections>
                         <outlet property="mapView" destination="9T3-BR-cU1" id="zqY-XL-G8a"/>
+                        <outlet property="radiusTextField" destination="GAv-WH-Rjc" id="a4L-d7-Cn9"/>
+                        <outlet property="titleTextField" destination="mft-Od-lcD" id="Yih-zx-f7Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hmH-E6-Tgf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -157,6 +192,7 @@
                                 </state>
                                 <connections>
                                     <action selector="setAlarm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pGH-6v-5Xe"/>
+                                    <segue destination="IYC-v1-gwK" kind="show" id="LQE-su-8c1"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U7Q-5P-VW0">
@@ -183,28 +219,27 @@
                                     <!--2017-11-14 14:56:20 +0000-->
                                 </date>
                             </datePicker>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Insert Notificaiton Message Here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H85-Ye-oAS">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Insert Notification Message Here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H85-Ye-oAS">
                                 <frame key="frameInset" minX="24" minY="422" width="335" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="H85-Ye-oAS" firstAttribute="top" secondItem="FXN-dy-jnY" secondAttribute="bottom" constant="8" id="1x0-Xt-ANp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="H85-Ye-oAS" secondAttribute="trailing" id="8mv-Nu-ODI"/>
                             <constraint firstItem="FXN-dy-jnY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="GAb-Fg-LGO"/>
                             <constraint firstItem="FXN-dy-jnY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LP5-ql-Dxn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FXN-dy-jnY" secondAttribute="trailing" constant="-16" id="RIL-FM-awi"/>
-                            <constraint firstItem="H85-Ye-oAS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fot-sf-PrQ"/>
                             <constraint firstItem="H85-Ye-oAS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="mYB-UH-VbI"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="esw-cW-vGt" secondAttribute="bottom" id="pYt-b1-3rn"/>
                             <constraint firstItem="esw-cW-vGt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r2Q-SP-PDm"/>
                             <constraint firstItem="FXN-dy-jnY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="29" id="rPS-JH-gZt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="H85-Ye-oAS" secondAttribute="trailing" id="sVo-sG-rfa"/>
                         </constraints>
                         <connections>
-                            <action selector="backgroundPressed:" destination="BYZ-38-t0r" eventType="valueChanged" id="XFp-gA-7be"/>
+                            <action selector="backgroundPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dDO-gM-W32"/>
                         </connections>
                     </view>
                     <connections>
@@ -217,4 +252,7 @@
             <point key="canvasLocation" x="-183.19999999999999" y="-419.64017991004499"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="LQE-su-8c1"/>
+    </inferredMetricsTieBreakers>
 </document>

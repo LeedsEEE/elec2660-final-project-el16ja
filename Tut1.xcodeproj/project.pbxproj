@@ -26,6 +26,8 @@
 		149CBBD31FC311A200C5359B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 149CBBD21FC311A200C5359B /* MapKit.framework */; };
 		14A325FE1FCC1D11005B518B /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A325FD1FCC1D11005B518B /* MapViewController.m */; };
 		14A326001FCC1D27005B518B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A325FF1FCC1D27005B518B /* CoreLocation.framework */; };
+		14FA6E011FD5543F000B5E91 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FA6E001FD5543F000B5E91 /* EventKit.framework */; };
+		14FA6E051FD57ABD000B5E91 /* Bin.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 14FA6E041FD57ABD000B5E91 /* Bin.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		14A325FC1FCC1D11005B518B /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		14A325FD1FCC1D11005B518B /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		14A325FF1FCC1D27005B518B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		14FA6E001FD5543F000B5E91 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		14FA6E041FD57ABD000B5E91 /* Bin.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Bin.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14FA6E011FD5543F000B5E91 /* EventKit.framework in Frameworks */,
 				14A326001FCC1D27005B518B /* CoreLocation.framework in Frameworks */,
 				149CBBD31FC311A200C5359B /* MapKit.framework in Frameworks */,
 				14203A921FBB1A1A00B6BD85 /* UserNotificationsUI.framework in Frameworks */,
@@ -140,6 +145,7 @@
 				14910E501FD18A9E00E448AA /* Annotation.h */,
 				14910E511FD18A9E00E448AA /* Annotation.m */,
 				14203A1D1FBB177E00B6BD85 /* AppDelegate.h */,
+				14FA6E041FD57ABD000B5E91 /* Bin.jpeg */,
 				14203A1E1FBB177E00B6BD85 /* AppDelegate.m */,
 				14203A201FBB177E00B6BD85 /* ViewController.h */,
 				14203A211FBB177E00B6BD85 /* ViewController.m */,
@@ -189,6 +195,7 @@
 		14203A8C1FBB1A0900B6BD85 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14FA6E001FD5543F000B5E91 /* EventKit.framework */,
 				14A325FF1FCC1D27005B518B /* CoreLocation.framework */,
 				149CBBD21FC311A200C5359B /* MapKit.framework */,
 				14203A911FBB1A1A00B6BD85 /* UserNotificationsUI.framework */,
@@ -305,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14203A2A1FBB177E00B6BD85 /* LaunchScreen.storyboard in Resources */,
+				14FA6E051FD57ABD000B5E91 /* Bin.jpeg in Resources */,
 				14203A271FBB177E00B6BD85 /* Assets.xcassets in Resources */,
 				14203A251FBB177E00B6BD85 /* Main.storyboard in Resources */,
 			);
